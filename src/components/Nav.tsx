@@ -1,21 +1,35 @@
 import { useNavigate } from 'react-router-dom'
 import LockSvg from '../assets/svg/Lock'
 import LogoSvg from '../assets/svg/Logo'
+import { useRegister } from '../context';
 
 export function Nav() {
   const navigate = useNavigate();
+  
+  const { signOut, user } = useRegister()
+
+  const handleSignOut = () => {
+    signOut()
+    navigate('/')
+  }
+
   return (
     <header className="flex bg-nav w-full h-[70px]">
-      <div className="flex mx-[150px] w-full items-center justify-between">
+      <div className="flex mx-[20px] md:mx-[80px] lg:mx-[150px] w-full items-center justify-between">
         <button onClick={() => navigate('/')}>
           <LogoSvg/>
         </button>
         <div>
         </div>
-        <div className='flex gap-2'>
+        <div className='flex gap-2 items-center'>
           <LockSvg/>
-          <p className='text-white'>Site 100% seguro</p>
+          <p className='text-white text-xs'>Site 100% seguro</p>
         </div>
+        {user.id && 
+        <button onClick={handleSignOut}>
+          Sair
+        </button>
+        }
       </div>
     </header>
   )

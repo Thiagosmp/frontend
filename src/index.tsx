@@ -6,6 +6,7 @@ import Login from './routes/Login';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Register from './routes/Register';
 import MyData from './routes/MyData';
+import GlobalContext from './context';
 
 const router = createBrowserRouter([
   { path: '/', element: <Login /> },
@@ -19,7 +20,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <div className='w-screnn h-full relative'>
     <React.StrictMode>
-      <RouterProvider router={router}/>
+      <GlobalContext>
+        <RouterProvider router={router}/>
+      </GlobalContext>
     </React.StrictMode>
   </div>
  

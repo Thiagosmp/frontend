@@ -4,32 +4,41 @@ import { Button } from '../components/Button'
 import Input from '../components/Input'
 import EyeSvg from '../assets/svg/Eye'
 import { useForm } from 'react-hook-form'
+import { AuthController } from '../controllers/AuthController'
+import { useNavigate } from 'react-router-dom'
+import { useRegister } from '../context'
 
 type LoginFormFields = {
   email: string
   password: string
 }
 const Login = () => {
+  const navigate = useNavigate();
+  const { signIn } = useRegister()
   const { register , handleSubmit, formState:{ errors }} = useForm<LoginFormFields>({
     defaultValues: {
       email: '',
       password: ''
     }})
 
-    const onSubmit = (data:LoginFormFields) => {
-      console.log(data)
-      console.log('Login efetuado com sucesso!')
-    }
+  const onSubmit = (data:LoginFormFields) => {
+    AuthController.login(data)
+    .then((res) => {
+      signIn(res)
+      navigate('/register')
+    }).catch((err) => {
+      alert('Email ou senha inválidos')
+    })}
 
   return (
     <div className='flex flex-col min-h-screen'>
       <div className='flex-1'>
         <Nav />
-        <div className='font-bold text-2xl flex items-center mt-14 justify-center'>
+        <div className='font-bold text-lg md:text-2xl flex items-center mt-14 justify-center'>
           <h1>Acessar e continuar</h1>
         </div>
         <div className='flex justify-center items-center'>
-          <form className='flex flex-col gap-2 mt-14 w-[372px] min-h-[287px] p-7 bg-white rounded-lg shadow-md'>
+          <form className='flex flex-col gap-2 mt-14  w-[300px] min-h-[200px] md:w-[372px] md:min-h-[287px] p-7 bg-white rounded-lg shadow-md'>
             <label>E-mail</label>
             <Input 
               className={errors?.email ? 'border border-primary focus:outline-1 focus:outline-primary' : ""}

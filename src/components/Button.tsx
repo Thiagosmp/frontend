@@ -1,13 +1,11 @@
 interface IButtonProps extends React.HTMLProps<HTMLButtonElement>{
   text: string
-  width?: string | number
-  height?: string | number
   type?: 'button' | 'submit' | 'reset'
   onClick?: () => void
 }
 
-export function Button({text, width=36, height=11, type, ...props}: IButtonProps) {
+export function Button({text, type, ...props}: IButtonProps) {
   return (
-    <button type={type} style={{width, height}} {...props} className='bg-button hover:bg-buttonHover rounded-md p-2 mt-3'>{text}</button>
+    <button type={type} {...props} className='bg-button hover:bg-buttonHover w-24 h-10 md:w-32 md:h-12 text-xs md:text-sm  rounded-md p-2 mt-3'>{text}</button>
   )
 }

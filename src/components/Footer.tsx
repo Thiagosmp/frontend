@@ -5,7 +5,7 @@ import img4 from '../assets/img/image4.png';
 
 export function Footer() {
   return (
-    <div className='absolute bottom-0 left-0 w-full gap-8 bg-white p-4 flex justify-center items-center'>
+    <div className='absolute bottom-0 left-0 w-full gap-4 md:gap-8 bg-white p-4 flex justify-center items-center'>
       <img src={img1} width={40} alt="Obit"  />
       <img src={img2} width={65} alt="RA1000"  />
       <img src={img3} width={80} alt="Google"  />
