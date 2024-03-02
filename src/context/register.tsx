@@ -3,13 +3,11 @@ import React, {
   createContext,
   useCallback,
   useContext,
-  useEffect,
   useMemo,
 } from "react";
 import usePersistedState from "../hooks/usePersistedState";
 import { jwtDecode } from "jwt-decode";
 import { ILoginViewModel, IRegisterViewModel } from "viewModels";
-import { setters } from "../service/api";
 
 const RegisterContext = createContext<RegisterContextProps>({} as RegisterContextProps);
 
@@ -29,8 +27,6 @@ const Register: React.FC<Props> = ({ children }) => {
     (response: ILoginViewModel) => {
       if (!response) return;
       const auth = response;
-      console.log(auth.user)
-      console.log(response)
       setUser(auth.user ?? {} as IRegisterViewModel);
       setToken(auth.token);
     },
@@ -41,11 +37,6 @@ const Register: React.FC<Props> = ({ children }) => {
     setUser({} as IRegisterViewModel);
     setToken(undefined);
   }, [setToken, setUser]);
-
-  useEffect(() => {
-    setters.setOnError(signOut);
-    setters.setOnRefreshToken(signIn);
-  }, [signIn, signOut]);
 
   return (
     <RegisterContext.Provider

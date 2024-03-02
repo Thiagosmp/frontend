@@ -11,17 +11,3 @@ export const decryptData = (cipherText: string, salt: string) => {
     return null;
   }
 };
-
-const KEY_DECRYPT = "b14ca5898a4e4133bbce2ea2315a1916";
-
-export const decryptCode = (cipherText: string) => {
-  const key = CryptoJS.enc.Utf8.parse(KEY_DECRYPT);
-  const iv = CryptoJS.lib.WordArray.create();
-
-  const decrypted = CryptoJS.AES.decrypt(cipherText, key, {
-    iv,
-    mode: CryptoJS.mode.CBC,
-    padding: CryptoJS.pad.Pkcs7,
-  });
-  return decrypted.toString(CryptoJS.enc.Utf8);
-};

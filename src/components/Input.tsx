@@ -1,14 +1,13 @@
 import React, { FC, forwardRef, useState } from 'react';
-
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   icon?: FC<React.SVGProps<SVGSVGElement>>;
   type: string;
   placeholder?: string;
+  mask?: string;
 }
 
-const Input = forwardRef<HTMLInputElement,InputProps>(({ icon: Icon, type="text", placeholder, ...rest},ref) => {
+const Input = forwardRef<HTMLInputElement,InputProps>(({ icon: Icon, mask, type="text", placeholder, ...rest},ref) => {
   const [showPassword, setShowPassword] = useState(false);
-
   const handlePassword = () => {
     setShowPassword(!showPassword);
   }

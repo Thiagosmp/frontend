@@ -8,11 +8,11 @@ declare module 'inputModels' {
     cep: string;
     uf: string;
     city: string;
-    end: string;
-    num: string;
-    comp: string;
-    bairro: string;
-    ref: string;    
+    address: string;
+    number: string;
+    complement: string;
+    neighborhood: string;
+    reference: string;    
   }
   export interface ILoginInputModel {
     email: string;

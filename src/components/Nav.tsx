@@ -15,21 +15,21 @@ export function Nav() {
 
   return (
     <header className="flex bg-nav w-full h-[70px]">
-      <div className="flex mx-[20px] md:mx-[80px] lg:mx-[150px] w-full items-center justify-between">
+      <div className="flex mx-[20px] gap-2 md:mx-[80px] lg:mx-[150px] w-full items-center justify-between">
         <button onClick={() => navigate('/')}>
           <LogoSvg/>
         </button>
-        <div>
+        <div className='flex gap-2 sm:gap-4'>
+          <div className='flex gap-2 items-center'>
+            <LockSvg/>
+            <p className='text-white text-xs'>Site 100% seguro</p>
+          </div>
+          {user.id && 
+          <button onClick={handleSignOut}>
+            <p className='text-white hover:text-primary'>Sair</p>
+          </button>
+          }
         </div>
-        <div className='flex gap-2 items-center'>
-          <LockSvg/>
-          <p className='text-white text-xs'>Site 100% seguro</p>
-        </div>
-        {user.id && 
-        <button onClick={handleSignOut}>
-          Sair
-        </button>
-        }
       </div>
     </header>
   )

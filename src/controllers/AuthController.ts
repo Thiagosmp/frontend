@@ -10,14 +10,6 @@ const login = (input: ILoginInputModel) =>
       .catch(reject);
   });
 
-const register = (input: IRegisterUserInputModel) =>
-  new Promise<IRegisterViewModel>((resolve, reject) => {
-    api
-      .post("api/register", input)
-      .then(({ data }) => resolve(data))
-      .catch(reject);
-  });
-
   const updateDataUser = (input: IRegisterUserInputModel) =>
   new Promise<IRegisterViewModel>((resolve, reject) => {
     api
@@ -26,17 +18,7 @@ const register = (input: IRegisterUserInputModel) =>
       .catch(reject);
   });
 
-  const getRegister = (id:string) =>
-  new Promise<IRegisterViewModel>((resolve, reject) => {
-    api
-      .get(`api/register/${id}`, )
-      .then(({ data }) => resolve(data))
-      .catch(reject);
-  });
-
 export const AuthController = {
   login,
-  register,
   updateDataUser,
-  getRegister,
 };
